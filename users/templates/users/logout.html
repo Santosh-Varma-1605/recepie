@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+    <h2 class="text-light">Are you sure you want to Log Out?</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="nav-item nav-link btn btn-lg btn-outline-danger">
+                  Yes
+                </button>
+              </form>
+        </small>
+    </div>
+{% else %}
+  <h2 class="text-light">You are Logged Out!, Would you like to LogIn?</h2>
+  <div class="border-top pt-3">
+      <small class="text-muted">
+          <form action="{% url 'login' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="nav-item nav-link btn btn-outline-info btn-lg">
+                Yes
+              </button>
+            </form>
+      </small>
+  </div>
+{% endif %}
+{% endblock content %}

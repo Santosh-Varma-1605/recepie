@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    {% for post in posts %}
+    <article class="media content-section bg-dark border-dark">
+      <img class = "rounded-circle article-img " src="{{ post.author.profile.image.url }}">
+        <div class="media-body">
+          <div class="article-metadata text-light">
+            <a class="mr-2 text-primary" href="#">{{ post.author }}</a>
+            <small class="text-muted text-light">{{ post.date_posted | date:"F d, Y" }}</small>
+          </div>
+          <h2><a class="article-title text-light" href="{%url 'post-detail' post.id%}">{{ post.title }}</a></h2>
+          <img  src="{{  post.image.url }}" class="img-fluid img-thumbnail rounded " alt="Responsive image" width="250" height="250">
+        </div>
+      </article>
+    {% endfor %}
+{% endblock content %}
